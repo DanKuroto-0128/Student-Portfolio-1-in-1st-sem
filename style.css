@@ -1,0 +1,298 @@
+/* ==========================================================
+   Student Portfolio – modern template look
+   CSS only; HTML content is untouched.
+   Selectors assumed: nav, header, section, section img, ul/li.
+   ========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --ink: #1d1e20;
+  --muted: #6d7081;
+  --brand: #673de6;
+  --brand-deep: #4a28c0;
+  --brand-tint: #f1ecff;
+  --line: #e6e3f2;
+  --bg: #f7f6fc;
+  --card: #ffffff;
+
+  --font: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --wrap: 1120px;
+  --r-xl: 32px;
+  --r-lg: 24px;
+  --r-md: 16px;
+  --shadow: 0 1px 2px rgba(29, 30, 32, 0.04), 0 16px 40px -24px rgba(74, 40, 192, 0.35);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--brand); color: #fff; }
+
+:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* ---------- Top navigation ---------- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 14px max(16px, calc((100% - var(--wrap)) / 2));
+  background: rgba(247, 246, 252, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+nav a,
+nav a:visited {
+  padding: 9px 18px;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+nav a:hover { background: var(--brand-tint); color: var(--brand-deep); }
+
+/* last link becomes the call-to-action button */
+nav a:last-child,
+nav a:last-child:visited {
+  background: var(--brand);
+  color: #fff;
+}
+nav a:last-child:hover { background: var(--brand-deep); color: #fff; }
+
+/* ---------- Hero ---------- */
+header {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  width: min(var(--wrap), calc(100% - 32px));
+  margin: 32px auto;
+  padding: clamp(32px, 6vw, 72px);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow);
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+header h1 {
+  margin: 0;
+  max-width: 13ch;
+  font-size: clamp(2.6rem, 8vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+/* role line as a badge */
+header p:nth-of-type(1) {
+  justify-self: start;
+  margin: 0;
+}
+
+/* the clickable badge */
+header p:nth-of-type(1) a,
+header p:nth-of-type(1) a:visited {
+  display: inline-block;
+  padding: 8px 18px;
+  background: var(--brand-tint);
+  color: var(--brand-deep);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+header p:nth-of-type(1) a:hover {
+  background: var(--brand);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+header p:nth-of-type(1) a:active {
+  transform: translateY(0);
+}
+
+/* welcome line as lead text */
+header p:nth-of-type(2) {
+  margin: 0;
+  max-width: 36ch;
+  color: var(--muted);
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ---------- Content sections as cards ---------- */
+section {
+  width: min(var(--wrap), calc(100% - 32px));
+  margin: 0 auto 24px;
+  padding: clamp(28px, 5vw, 56px);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow);
+  scroll-margin-top: 84px;
+}
+
+section h2 {
+  grid-column: 1 / -1;
+  margin: 0 0 24px;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+section p {
+  max-width: 62ch;
+  margin: 0 0 1em;
+  color: var(--muted);
+}
+
+section a { color: var(--brand-deep); font-weight: 600; text-underline-offset: 3px; }
+section a:hover { color: var(--brand); }
+
+/* lists become a grid of small cards (skills, projects, goals) */
+section ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+section li {
+  margin: 0;
+  padding: 16px 20px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--brand);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+section li:hover { background: var(--brand-tint); border-color: var(--brand); }
+
+/* ---------- About section: photo + text side by side ---------- */
+section:has(> img) {
+  display: grid;
+  grid-template-columns: minmax(220px, 340px) 1fr;
+  column-gap: clamp(28px, 6vw, 72px);
+  align-items: start;
+}
+
+section:has(> img) > img { grid-column: 1; grid-row: 2 / span 20; }
+section:has(> img) > :not(h2):not(img) { grid-column: 2; }
+
+section > img {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center 25%;
+  border-radius: var(--r-lg);
+  box-shadow: 14px 14px 0 var(--brand-tint), 0 0 0 1px var(--line);
+}
+
+/* ---------- Motion ---------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  header { animation: none; }
+  nav a, section li { transition: none; }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 720px) {
+  nav { justify-content: center; flex-wrap: wrap; }
+  nav a, nav a:visited { padding: 8px 12px; font-size: 0.9rem; }
+
+  header, section { border-radius: 24px; }
+
+  section:has(> img) { grid-template-columns: 1fr; }
+  section:has(> img) > img,
+  section:has(> img) > :not(h2):not(img) { grid-column: 1; grid-row: auto; }
+  section:has(> img) > img { max-width: 240px; margin: 0 14px 28px 0; }
+}
+
+/* ==========================================================
+   Hobbies: picture cards
+   ========================================================== */
+.hobby-grid {
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.hobby-grid .hobby {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.hobby-grid .hobby:hover {
+  transform: translateY(-4px);
+  border-color: var(--brand);
+  background: var(--card);
+}
+
+.hobby-grid .hobby img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  background: var(--brand-tint);
+}
+
+/* keep the faces visible in the tall Danganronpa poster */
+.hobby-grid .hobby img.focus-top { object-position: center 15%; }
+
+.hobby-grid .hobby span {
+  padding: 14px 18px 16px;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hobby-grid .hobby { transition: none; }
+}
